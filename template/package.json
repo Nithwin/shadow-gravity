@@ -5,7 +5,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "arise": "node .antigravity/arise.js",
-        "agent:verify": "node .antigravity/verify-compliance.js"
+        "agent:verify": "node .antigravity/scripts/verify.js",
+        "agent:plan": "node .antigravity/scripts/plan.js"
     },
     "keywords": [],
     "author": "",
