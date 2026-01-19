@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "The gravitational anchor for Google Antigravity agents. Prevents AI drift.",
   "bin": {
-    "shadow-gravity": "./bin/cli.js"
+    "shadow-gravity": "bin/cli.js"
   },
   "keywords": [
     "antigravity",
@@ -16,6 +16,16 @@
   ],
   "author": "Nithwin",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nithwin/shadow-gravity.git"
+  },
+  "files": [
+    "bin",
+    "template",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
     "fs-extra": "^11.1.1",
     "prompts": "^2.4.2",

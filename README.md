@@ -15,10 +15,11 @@ It is a strict, opinionated scaffolder that treats AI Agents like **Shadow Soldi
 
 ## 🗡️ Usage
 
-Cast the shadow:
+Since this is hosted on GitHub, you can run it directly:
 
 ```bash
-npx shadow-gravity
+# Replace YOUR_USERNAME with your actual GitHub username
+npx github:YOUR_USERNAME/shadow-gravity
 ```
 
 ## 🧠 The Protocol
