@@ -7,44 +7,48 @@
   ╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
   ███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝
-      🌑 GRAVITY PROTOCOL INITIATED...
+      🌑 GRAVITY PROTOCOL (The Arsenal)
 ```
 
-> **"Code is War."** — The Shadow Monarch
-keeps Artificial Intelligence grounded."**
+**The Ultimate Gravitational Anchor for Autonomous AI Agents.**
 
-[![npm](https://img.shields.io/npm/v/shadow-gravity)](https://www.npmjs.com/package/shadow-gravity)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Shadow Gravity is not just a scaffolder. It is an **End-to-End Product Builder** that gives your AI Agent a "Weapons Cache" of tools to build, deploy, and verify applications autonomously.
 
-In the world of **Google Antigravity**, agents float. They drift. They hallucinate.
-**Shadow Gravity** pulls them back to reality.
+## 🚀 Features
 
-It is a strict, opinionated scaffolder that treats AI Agents like **Shadow Soldiers**:
-* They must follow orders (The Plan).
-* They cannot stop until the mission is complete (Green Tests).
-* They cannot speak nonsense (No Hallucinated Imports).
+### 1. 🏗️ God-Mode Scaffolding
+- **Mobile First**: Flutter & React Native (Expo).
+- **Web Giants**: Next.js (Monorepo) & React (Vite).
+- **Backend Core**: Industry Standard Express + TypeScript (Strict Mode).
+- **Monorepo Support**: Automatically wires up Mobile + Backend with `concurrently`.
 
-## 🗡️ Usage
+### 2. ⚔️ The Shadow Arsenal (Slash Commands)
+Your Agent comes equipped with a library of automation scripts. Just wake it up and type:
 
-Cast the shadow:
+| Domain | Command | Description |
+| :--- | :--- | :--- |
+| **Mobile** | `/mobile build` | Compiles APK (Flutter) or Android Bundle (Expo). |
+| **Web** | `/web deploy` | Triggers deployment sequence (e.g., Vercel). |
+| **Backend** | `/backend db` | Syncs Database (Prisma generate / migrate). |
+| **Agent** | `/agent verify` | Runs the "Code Police" to ban `console.log` & `TODO`. |
+| **Agent** | `/agent plan` | Visualizes the current strategic plan. |
+
+### 3. 🧠 Cortex Integration
+- **Interactive Arise**: `npm run arise` asks "What is your command?" and primes the Agent's context.
+- **Protocol Injection**: Enforces TDD and "Zero Defect" architecture via `MISSION.md`.
+
+## 📦 Usage
 
 ```bash
+# 1. Unleash the Shadow
 npx shadow-gravity
-```
 
-## 🧠 The Protocol
-When you run this, it injects a **Gravity Core** (`.antigravity/`) into your project. This forces the IDE Agent to enter a **Red-Green-Refactor Loop** designed to prevent "AI Slop".
+# 2. Answer the Call
+# Choose: Mobile, Web, or Custom
+# Choose: Monorepo? Backend?
 
-### S-Rank Mode
-If you select "S-Rank" during creation, the tool injects extra constraints:
-- **No TODOs Allowed**: The build fails if you leave them.
-- **Strict Typing**: Usage of `any` is forbidden (in TS projects).
-- **Mandatory Arise**: You must use the `npm run arise` command to start the agent.
-
-## 🔮 The "Arise" Command
-Once your project is created, wake up your agent with the specialized command:
-
-```bash
+# 3. Arise, Agent.
+cd your-project
 npm run arise
 ```
 
