@@ -98,8 +98,8 @@ async function init() {
       config.customDescription = customRes.customStackDescription;
       config.features = customRes.features;
   } else {
-      // Auto-assign features for "God Stacks"
-      config.features = ['ts', 'test', 'ci']; // Defaults for recommended stacks
+      // Auto-assign features based on stack type
+      config.features = getFeaturesForStack(config.stack);
   }
 
   // --- EXECUTION ---
@@ -128,12 +128,24 @@ async function init() {
   console.log(`\nTo arise your agent:\n  cd ${config.projectName}\n  npm run arise`);
 }
 
+function getFeaturesForStack(stack) {
+    // Web Stacks usually get TS
+    if (stack.includes('next') || stack.includes('react')) return ['ts', 'test', 'ci'];
+    
+    // Mobile Stacks
+    if (stack === 'expo') return ['ts', 'test', 'ci']; // React Native uses TS
+    if (stack === 'flutter') return ['test', 'ci']; // Flutter uses Dart, NOT TS
+    
+    return ['test', 'ci'];
+}
+
 function generateMission(config) {
   const { stack, features, customDescription } = config;
   let rules = [];
   let architectureNotes = "";
+  let negativeConstraints = "";
 
-  // Stack Specific Rules
+  // Stack Specific Rules & Constraints
   if (stack === 'next_node') {
     architectureNotes = "## 🏗️ ARCHITECTURE: MONOREPO (Frontend + Backend)\n- **Structure:** Create two folders: `client/` (Next.js) and `server/` (Node.js/Express).\n- **Comm:** Frontend talks to Backend via env vars (`NEXT_PUBLIC_API_URL`).";
     rules.push("- **Next.js:** Use App Router.");
@@ -144,8 +156,10 @@ function generateMission(config) {
     architectureNotes = "## 🏗️ ARCHITECTURE: NEXT.JS FULLSTACK\n- **Structure:** All logic inside `app/api` or Server Actions.\n- **DB:** Connect directly via server components.";
   } else if (stack === 'expo') {
     architectureNotes = "## 🏗️ ARCHITECTURE: REACT NATIVE (EXPO)\n- **Mobile First:** Verify UI on small screens.";
+    negativeConstraints = "1. **NO HTML/CSS:** You are building for Mobile. Do NOT use `<div>`, `<span>`, or CSS files. Use `<View>`, `<Text>`, and `StyleSheet`.\n2. **NO DOM:** `document` and `window` do not exist.";
   } else if (stack === 'flutter') {
-    architectureNotes = "## 🏗️ ARCHITECTURE: FLUTTER\n- **Dart:** Strict typing enforced.";
+    architectureNotes = "## 🏗️ ARCHITECTURE: FLUTTER (DART)\n- **Language:** Use Dart. Do NOT use JavaScript/TypeScript.\n- **Widgets:** Everything is a Widget. Use `MaterialApp` as root.";
+    negativeConstraints = "1. **NO HTML/CSS/JS:** This is a Flutter project. HTML tags and CSS are INVALID.\n2. **NO NPM:** Use `pubspec.yaml` for dependencies, not `package.json`.";
   }
 
   if (customDescription) {
@@ -176,6 +190,11 @@ ${rules.join('\n')}
 
 ---
 
+## ⛔ NEGATIVE CONSTRAINTS (DO NOT IGNORE)
+${negativeConstraints || "1. No Hallucinated Imports."}
+
+---
+
 ## 🔄 PHASE 1: The TDD Loop
 1.  **RED:** Write failing test.
 2.  **GREEN:** Write minimal code.
@@ -184,9 +203,8 @@ ${rules.join('\n')}
 ---
 
 ## 🛡️ PHASE 2: Anti-Slop
-1.  **No Hallucinations:** Check imports.
-2.  **Clean Logs:** No console.log.
-3.  **Zero Tolerance:** Tests must pass.
+1.  **Clean Logs:** No console.log.
+2.  **Zero Tolerance:** Tests must pass.
 
 ---
 
