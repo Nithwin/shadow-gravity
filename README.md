@@ -1,6 +1,17 @@
-# 🌑 shadow-gravity
+# 🌑 Shadow Gravity (v2.0 Architect)
 
-> **"The force that keeps Artificial Intelligence grounded."**
+```text
+  ███████╗██╗  ██╗ █████╗ ██████╗  ██████╗ ██╗    ██╗
+  ██╔════╝██║  ██║██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██║    ██║
+  ███████╗███████║███████║██║  ██║██║   ██║██║ █╗ ██║
+  ╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
+  ███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
+  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝
+      🌑 GRAVITY PROTOCOL INITIATED...
+```
+
+> **"Code is War."** — The Shadow Monarch
+keeps Artificial Intelligence grounded."**
 
 [![npm](https://img.shields.io/npm/v/shadow-gravity)](https://www.npmjs.com/package/shadow-gravity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -15,11 +26,10 @@ It is a strict, opinionated scaffolder that treats AI Agents like **Shadow Soldi
 
 ## 🗡️ Usage
 
-Since this is hosted on GitHub, you can run it directly:
+Cast the shadow:
 
 ```bash
-# Replace YOUR_USERNAME with your actual GitHub username
-npx github:YOUR_USERNAME/shadow-gravity
+npx shadow-gravity
 ```
 
 ## 🧠 The Protocol

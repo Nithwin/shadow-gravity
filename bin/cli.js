@@ -12,182 +12,164 @@ console.log(kleur.magenta().bold(`
   ╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
   ███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝
-      🌑 GRAVITY PROTOCOL v2.0
+      🌑 GRAVITY PROTOCOL v3.0 (ARCHITECT)
 `));
 
 async function init() {
-  let projectConfig = {};
+  let config = {};
 
-  // 1. Basic Info
-  const basics = await prompts([
-    {
-      type: 'text',
-      name: 'projectName',
-      message: 'Name your Shadow extraction:',
-      initial: 'my-shadow-app'
-    },
-    {
-      type: 'select',
-      name: 'mode',
-      message: 'Select Operation Mode:',
-      choices: [
-        { title: '🚀 Rapid Deployment (Best Practice Stacks)', value: 'rapid' },
-        { title: '🛠️ Custom Architect (Granular Control)', value: 'custom' }
-      ]
-    }
-  ]);
+  // 1. Project Name (The Initiation)
+  const nameRes = await prompts({
+    type: 'text',
+    name: 'projectName',
+    message: 'What is the name of your new universe?',
+    initial: 'shadow-app'
+  });
+  if (!nameRes.projectName) return console.log(kleur.red('❌ Cancelled.'));
+  config.projectName = nameRes.projectName;
 
-  if (!basics.projectName) return console.log(kleur.red('❌ Cancelled.'));
-  projectConfig = { ...basics };
+  // 2. The Domain (The Battlefield)
+  const domainRes = await prompts({
+    type: 'select',
+    name: 'domain',
+    message: 'Choose your domain:',
+    choices: [
+      { title: '🕸️ Web Application', value: 'web' },
+      { title: '📱 Mobile Application', value: 'mobile' },
+      { title: '🛠️ Custom Application', value: 'custom' }
+    ]
+  });
+  config.domain = domainRes.domain;
 
-  // 2. Stack Selection
-  if (basics.mode === 'rapid') {
-    const rapid = await prompts({
+  // 3. The Stack (The Weapon)
+  if (config.domain === 'web') {
+    const webRes = await prompts({
       type: 'select',
       name: 'stack',
-      message: 'Choose a Pre-Configured "God Stack":',
+      message: 'Select your Web Architecture:',
       choices: [
-        { title: 'Web Standard (Next.js + TS + Tailwind + Shad/cn)', value: 'web_god' },
-        { title: 'API Light (Hono + Cloudflare Workers)', value: 'api_god' },
-        { title: 'App Heavy (Expo + React Native + Supabase)', value: 'app_god' },
-        { title: 'Python AI (FastAPI + LangChain + Pinecone)', value: 'ai_god' }
+        { title: 'Next.js (Frontend) + Node.js (Backend)', value: 'next_node' },
+        { title: 'React (Frontend) + Node.js (Backend)', value: 'react_node' },
+        { title: 'Next.js (Fullstack - App Router)', value: 'next_full' },
+        { title: 'Custom Web Stack', value: 'web_custom' }
       ]
     });
-    // Hydrate config based on preset
-    projectConfig.features = getPresetFeatures(rapid.stack);
-    projectConfig.framework = getPresetFramework(rapid.stack);
+    config.stack = webRes.stack;
+  } else if (config.domain === 'mobile') {
+    const mobileRes = await prompts({
+      type: 'select',
+      name: 'stack',
+      message: 'Select your Mobile Ops:',
+      choices: [
+        { title: 'React Native (Expo)', value: 'expo' },
+        { title: 'Flutter', value: 'flutter' },
+        { title: 'Custom Mobile Stack', value: 'mobile_custom' }
+      ]
+    });
+    config.stack = mobileRes.stack;
   } else {
-    // Custom Flow
-    const custom = await prompts([
-      {
-        type: 'select',
-        name: 'framework',
-        message: 'Core Framework:',
-        choices: [
-            { title: 'Next.js', value: 'nextjs' },
-            { title: 'React (Vite)', value: 'react' },
-            { title: 'Node (Express)', value: 'express' },
-            { title: 'Hono', value: 'hono' },
-            { title: 'Python (FastAPI)', value: 'fastapi' }
-        ]
-      },
-      {
-        type: 'multiselect',
-        name: 'features',
-        message: 'Inject Extra Modules:',
-        choices: [
-            { title: 'TypeScript (Strict)', value: 'ts', selected: true },
-            { title: 'Tailwind CSS', value: 'tailwind', selected: true },
-            { title: 'Docker / Containerization', value: 'docker' },
-            { title: 'GitHub Actions (CI/CD)', value: 'ci' },
-            { title: 'Prisma / Drizzle (Database)', value: 'db' },
-            { title: 'Jest / Vitest', value: 'test', selected: true }
-        ]
-      }
-    ]);
-    projectConfig = { ...projectConfig, ...custom };
+    config.stack = 'custom_generic';
   }
 
-  // 3. Power Level
-  const power = await prompts({
-      type: 'select',
-      name: 'powerLevel',
-      message: 'Constraint Level:',
-      choices: [
-        { title: 'S-Rank (Strict TDD / No Hallucinations)', value: 's-rank' },
-        { title: 'E-Rank (Casual)', value: 'e-rank' }
-      ]
-  });
-  projectConfig.powerLevel = power.powerLevel;
+  // 4. Deep Customization (The Reinforcements)
+  const isCustom = config.stack.includes('custom') || config.domain === 'custom';
+  
+  if (isCustom) {
+      console.log(kleur.cyan("\n🛠️  Initializing Deep Research Protocol..."));
+      const customRes = await prompts([
+          {
+              type: 'text',
+              name: 'customStackDescription',
+              message: 'Describe your perfect stack (e.g., "SvelteKit + Rust"):',
+              initial: 'My Custom Stack'
+          },
+          {
+              type: 'multiselect',
+              name: 'features',
+              message: 'Inject Module Constraints:',
+              choices: [
+                  { title: 'Docker', value: 'docker' },
+                  { title: 'CI/CD (GitHub)', value: 'ci' },
+                  { title: 'TypeScript', value: 'ts' },
+                  { title: 'Testing (Jest/Vitest)', value: 'test' }
+              ]
+          }
+      ]);
+      config.customDescription = customRes.customStackDescription;
+      config.features = customRes.features;
+  } else {
+      // Auto-assign features for "God Stacks"
+      config.features = ['ts', 'test', 'ci']; // Defaults for recommended stacks
+  }
 
   // --- EXECUTION ---
-  const targetDir = path.join(process.cwd(), projectConfig.projectName);
+  const targetDir = path.join(process.cwd(), config.projectName);
   const templateDir = path.join(__dirname, '../template');
 
   if (fs.existsSync(targetDir)) {
-    console.log(kleur.red(`❌ Error: ${projectConfig.projectName} already exists.`));
+    console.log(kleur.red(`❌ Error: ${config.projectName} already exists.`));
     process.exit(1);
   }
 
-  console.log(kleur.cyan(`\n📦 Initializing Shadow Artifacts in ${projectConfig.projectName}...`));
+  console.log(kleur.cyan(`\n📦 Architecting ${config.projectName}...`));
   fs.copySync(templateDir, targetDir);
 
-  console.log(kleur.cyan(`🧠 Forging Custom Protocol...`));
-  const missionContent = generateMission(projectConfig);
+  // Generate Mission
+  const missionContent = generateMission(config);
   fs.writeFileSync(path.join(targetDir, '.antigravity/MISSION.md'), missionContent);
 
-  // Initialize Git
+  // Git & Install
   try { execSync(`git init ${targetDir}`, { stdio: 'ignore' }); } catch (e) {}
 
-  // Install Deps (Simulated/Real)
-  let installCmd = `cd ${projectConfig.projectName} && npm install`;
-  
-  // Note: In a real tool, we would also npm install the selected packages (next, react, etc.)
-  // For this scaffold, we purely set up the *Agent's Environment*.
-  
-  console.log(kleur.cyan('\nYour Shadow Soldiers are installing dependencies...'));
-  try {
-    execSync(installCmd, { stdio: 'inherit' });
-  } catch(e) { console.log(kleur.yellow('⚠️ npm install issues.')); }
+  console.log(kleur.cyan('\nYour Shadow Soldiers are installing base dependencies...'));
+  try { execSync(`cd ${config.projectName} && npm install`, { stdio: 'inherit' }); } catch(e) {}
 
-  console.log(kleur.green(`\n✅ EXTRACTION COMPLETE.`));
-  console.log(`\nTo arise your agent:\n  cd ${projectConfig.projectName}\n  npm run arise`);
-}
-
-// Helpers
-function getPresetFeatures(preset) {
-    if (preset === 'web_god') return ['ts', 'tailwind', 'test'];
-    if (preset === 'api_god') return ['ts', 'db', 'test'];
-    if (preset === 'app_god') return ['ts', 'db'];
-    if (preset === 'ai_god') return ['docker'];
-    return [];
-}
-function getPresetFramework(preset) {
-    if (preset === 'web_god') return 'nextjs';
-    if (preset === 'api_god') return 'hono';
-    if (preset === 'app_god') return 'expo';
-    if (preset === 'ai_god') return 'fastapi';
-    return 'node';
+  console.log(kleur.green(`\n✅ ARCHITECTURE COMPLETE.`));
+  console.log(`\nTo arise your agent:\n  cd ${config.projectName}\n  npm run arise`);
 }
 
 function generateMission(config) {
-  const { framework, features, powerLevel } = config;
-  
-  const rules = [];
+  const { stack, features, customDescription } = config;
+  let rules = [];
+  let architectureNotes = "";
 
-  // Framework Rules
-  if (framework === 'nextjs') rules.push("- **Next.js:** Use App Router. Use Server Actions for data mutation.");
-  if (framework === 'hono') rules.push("- **Hono:** Keep it edge-compatible. No Node.js specific APIs.");
-  if (framework === 'fastapi') rules.push("- **FastAPI:** Use Pydantic v2. Use `async def`.");
-
-  // Feature Rules
-  if (features.includes('ts')) rules.push("- **TypeScript:** STRICT MODE. No `any`. Interfaces for everything.");
-  if (features.includes('tailwind')) rules.push("- **Tailwind:** Use utility classes. No custom CSS files.");
-  if (features.includes('docker')) rules.push("- **Docker:** You MUST create a `Dockerfile`. Verify it builds with `docker build .`.");
-  if (features.includes('ci')) rules.push("- **CI/CD:** Create `.github/workflows/main.yml` that runs tests on push.");
-  if (features.includes('db')) rules.push("- **Database:** Use migrations. Do not manually edit the DB schema.");
-
-  let sRank = "";
-  if (powerLevel === 's-rank') {
-      sRank = `
-## 🌑 SHADOW GRAVITY: S-RANK RESTRICTIONS
-1. **Zero Tolerance:** You are FORBIDDEN from committing without tests.
-2. **No TODOs:** Any "TODO" comments will cause the Shadow to reject the build.
-3. **The Verify Script:** You must run \`npm run agent:verify\` before every commit.
-      `;
+  // Stack Specific Rules
+  if (stack === 'next_node') {
+    architectureNotes = "## 🏗️ ARCHITECTURE: MONOREPO (Frontend + Backend)\n- **Structure:** Create two folders: `client/` (Next.js) and `server/` (Node.js/Express).\n- **Comm:** Frontend talks to Backend via env vars (`NEXT_PUBLIC_API_URL`).";
+    rules.push("- **Next.js:** Use App Router.");
+    rules.push("- **Node.js:** Use Express or NestJS. Strict Validation.");
+  } else if (stack === 'react_node') {
+    architectureNotes = "## 🏗️ ARCHITECTURE: SEPARATE CLIENT/SERVER\n- **Client:** React (Vite). **Server:** Node.js.";
+  } else if (stack === 'next_full') {
+    architectureNotes = "## 🏗️ ARCHITECTURE: NEXT.JS FULLSTACK\n- **Structure:** All logic inside `app/api` or Server Actions.\n- **DB:** Connect directly via server components.";
+  } else if (stack === 'expo') {
+    architectureNotes = "## 🏗️ ARCHITECTURE: REACT NATIVE (EXPO)\n- **Mobile First:** Verify UI on small screens.";
+  } else if (stack === 'flutter') {
+    architectureNotes = "## 🏗️ ARCHITECTURE: FLUTTER\n- **Dart:** Strict typing enforced.";
   }
 
+  if (customDescription) {
+      architectureNotes = `## 🏗️ ARCHITECTURE: CUSTOM (${customDescription})\n- **Directive:** Follow industry best practices for this stack.`;
+  }
+
+  // Feature Rules
+  if (features && features.includes('docker')) rules.push("- **Docker:** Maintain a working `Dockerfile`.");
+  if (features && features.includes('ts')) rules.push("- **TypeScript:** STRICT `tsconfig`. No `any`.");
+  if (features && features.includes('test')) rules.push("- **Testing:** TDD is mandatory. 100% critical path coverage.");
+
   return `# 🛑 AGENT PROTOCOL: ZERO-DEFECT ARCHITECTURE
-> **SYSTEM OVERRIDE:** You are an **Autonomous Senior Engineer**.
+> **SYSTEM OVERRIDE:** You are an **Autonomous Senior Architect**.
 
 ---
 
-## 🧠 PHASE 0: Planning (Measure Twice)
+## 🧠 PHASE 0: Planning & Context
 1.  **Analyze:** Read \`package.json\`.
 2.  **Plan:** Create \`.antigravity/CURRENT_PLAN.md\`.
 3.  **Confirm:** Ask user.
 
 ---
+
+${architectureNotes}
 
 ## 💻 TECH STACK RULES
 ${rules.join('\n')}
@@ -204,13 +186,14 @@ ${rules.join('\n')}
 ## 🛡️ PHASE 2: Anti-Slop
 1.  **No Hallucinations:** Check imports.
 2.  **Clean Logs:** No console.log.
-${sRank}
+3.  **Zero Tolerance:** Tests must pass.
 
 ---
 
 ## 🏁 PHASE 4: Handover
 1.  Run full suite.
-2.  Output: "✅ BUILD SUCCESSFUL."
+2.  Run compliance: \`npm run agent:verify\`.
+3.  Output: "✅ BUILD SUCCESSFUL."
 `;
 }
 
