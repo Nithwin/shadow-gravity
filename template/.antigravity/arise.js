@@ -22,8 +22,29 @@ async function wakeUp() {
     if (cmd.startsWith('/')) {
         // SLASH COMMAND ROUTER
         const parts = cmd.slice(1).split(' ');
-        const domain = parts[0]; // mobile, web, backend
-        const action = parts[1]; // build, deploy, db
+        const domain = parts[0]; 
+        const action = parts[1];
+
+        if (domain === 'help') {
+             console.log(kleur.yellow('\n⚔️  THE SHADOW ARSENAL (Available Commands):\n'));
+             const scriptsDir = path.join(__dirname, 'scripts');
+             if (fs.existsSync(scriptsDir)) {
+                 const categories = fs.readdirSync(scriptsDir);
+                 categories.forEach(cat => {
+                     const catPath = path.join(scriptsDir, cat);
+                     if (fs.statSync(catPath).isDirectory()) {
+                         const scripts = fs.readdirSync(catPath).filter(f => f.endsWith('.js'));
+                         scripts.forEach(s => {
+                             console.log(kleur.cyan(`  /${cat} ${s.replace('.js', '')}`));
+                         });
+                     } else if (cat.endsWith('.js')) {
+                         console.log(kleur.cyan(`  /agent ${cat.replace('.js', '')}`));
+                     }
+                 });
+             }
+             console.log('');
+             return;
+        }
 
         const scriptPath = path.join(__dirname, 'scripts', domain, `${action}.js`);
 
@@ -36,7 +57,7 @@ async function wakeUp() {
             }
         } else {
              console.log(kleur.yellow(`\n⚠️  Unknown Command: /${domain} ${action}`));
-             console.log(kleur.dim(`Available: /mobile build, /web deploy, /backend db`));
+             console.log(kleur.dim(`Type "/help" to see the full arsenal.`));
         }
 
     } else if (cmd.length > 0) {
@@ -45,8 +66,29 @@ async function wakeUp() {
         const content = `# 🎯 CURRENT OBJECTIVE\n${cmd}\n\n> Timestamp: ${new Date().toISOString()}`;
         fs.writeFileSync(taskFile, content);
         
-        console.log(kleur.green(`\n✅ PROTOCOL UPDATED.`));
-        console.log(kleur.cyan(`\nAgent Focus set to: "${cmd}"`));
+        console.log(kleur.green(`\n✅ MISSION SIGNAL BROADCAST.`));
+        console.log(kleur.white(`\n The Shadow Protocol has recorded your intent: "${cmd}"`));
+        console.log(kleur.dim(`\n NEXT STEPS:`));
+        console.log(kleur.dim(` 1. The .antigravity/CURRENT_TASK.md beacon is active.`));
+        console.log(kleur.dim(` 2. I am opening this file for you now...`));
+        
+        // AUTO-OPEN LOGIC
+        try {
+            const editor = process.env.EDITOR || 'code';
+            // Try to open with VS Code / Cursor if available, else system default
+            if (process.platform === 'win32') {
+                execSync(`start "" "${taskFile}"`, { stdio: 'ignore' });
+            } else if (process.platform === 'darwin') {
+                execSync(`open "${taskFile}"`, { stdio: 'ignore' });
+            } else {
+                execSync(`xdg-open "${taskFile}"`, { stdio: 'ignore' });
+            }
+        } catch (e) {
+            // Silently fail if no opener found, user will just see the manual steps.
+        }
+
+        console.log(kleur.dim(` 3. Your AI Agent will detect this file.`));
+        console.log(kleur.magenta().bold(`\n👉 ACTION REQUIRED: Open your AI Chat and type "Execute Mission" or "Go".`));
     } else {
         console.log(kleur.red("❌ No command received. Sleeping..."));
     }
