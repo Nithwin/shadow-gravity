@@ -35,10 +35,15 @@ Your Agent comes equipped with a library of automation scripts. Just wake it up 
 | **Mobile** | `/mobile build` | Compiles APK (Flutter) or Android Bundle (Expo). |
 | **Web** | `/web deploy` | Triggers deployment sequence (e.g., Vercel). |
 | **Backend** | `/backend db` | Syncs Database (Prisma generate / migrate). |
+| **Backend** | `/backend forge "User email:string"` | **[NEW]** Intelligent Schema Generator. |
+| **Agent** | `/agent remember "Use Postgres"` | **[NEW]** Stores permanent memory in DECISIONS.md. |
+| **Ops** | `/ops docker` | **[NEW]** Generates Dockerfile & docker-compose.yml. |
+| **Ops** | `/ops deploy` | **[NEW]** Generates GitHub Actions workflow. |
 | **Agent** | `/agent verify` | Runs the "Code Police" to ban `console.log` & `TODO`. |
 | **Agent** | `/agent plan` | Visualizes the current strategic plan. |
 
 ### 3. 🧠 Cortex Integration
+- **Shadow MEMORY**: Use `/agent remember` to give your agent a long-term memory that persists across restarts.
 - **Interactive Arise**: `npm run arise` asks "What is your command?" and primes the Agent's context.
 - **Protocol Injection**: Enforces TDD and "Zero Defect" architecture via `MISSION.md`.
 

@@ -63,7 +63,14 @@ async function wakeUp() {
     } else if (cmd.length > 0) {
         // NATURAL LANGUAGE -> TASK
         const taskFile = path.join(__dirname, 'CURRENT_TASK.md');
-        const content = `# 🎯 CURRENT OBJECTIVE\n${cmd}\n\n> Timestamp: ${new Date().toISOString()}`;
+        const decisionFile = path.join(__dirname, '.antigravity', 'DECISIONS.md');
+        
+        let memory = "";
+        if (fs.existsSync(decisionFile)) {
+            memory = `\n\n## 🧠 LONG TERM MEMORY\n${fs.readFileSync(decisionFile, 'utf-8')}`;
+        }
+
+        const content = `# 🎯 CURRENT OBJECTIVE\n${cmd}\n\n> Timestamp: ${new Date().toISOString()}${memory}`;
         fs.writeFileSync(taskFile, content);
         
         console.log(kleur.green(`\n✅ MISSION SIGNAL BROADCAST.`));
