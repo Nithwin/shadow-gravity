@@ -1,32 +1,32 @@
 # 🛠️ Supported Stacks
 
-Shadow Gravity is opinionated. We choose the best tools for AI Agents to manipulate safely and effectively.
+Shadow Gravity selects specific, high-reliability tools optimized for autonomous AI development.
 
 ## 📱 Mobile
 
 | Framework | Context | Why? |
 | :--- | :--- | :--- |
-| **Flutter** | `flutter` | **Zero-Ambiguity UI**. Everything is a Widget. Strong typing (Dart) prevents many runtime errors. |
-| **Expo** | `expo` | **Fast Iteration**. React Native without the native module headaches. Good for agents familiar with JS/TS. |
+| **Flutter** | `flutter` | **Type Safety**. Strong typing (Dart) reduces runtime errors for AI-generated code. |
+| **Expo** | `expo` | **Rapid Prototyping**. React Native environment optimized for ease of use. |
 
 ## 🕸️ Web
 
 | Framework | Context | Why? |
 | :--- | :--- | :--- |
-| **Next.js** | `next_node` | **The Monorepo King**. Best for full-stack apps. We enforce App Router and TypeScript. |
-| **React** | `react_node` | **Pure Client**. Powered by Vite. Fast, simple, and creates a clear separation of concerns. |
+| **Next.js** | `next_node` | **Full Stack**. Utilizes App Router and TypeScript for scalable applications. |
+| **React** | `react_node` | **Client Side**. Powered by Vite for fast development cycles. |
 
 ## 🔙 Backend
 
 | Framework | Context | Why? |
 | :--- | :--- | :--- |
-| **Node.js** | `node_express`| **Industry Standard**. Express + TypeScript + Zod. It's the "boring" choice that works perfectly. |
-| **Python** | `python_fastapi`| **AI Native**. FastAPI + Pydantic. Perfect if you plan to integrate LLMs, RAG, or Data Science directly into the backend. |
+| **Node.js** | `node_express`| **Standard**. Express + TypeScript + Zod offers robust validation and type safety. |
+| **Python** | `python_fastapi`| **Data Science Ready**. FastAPI + Pydantic provides excellent schema validation and AI integration capabilities. |
 
-## 🚀 The Shadow Wrapper
+## 🚀 Environment Enforcement
 
-Regardless of the stack, Shadow Gravity injects:
+Regardless of the stack, Shadow Gravity enforces:
 
-1.  **Strict Mode**: TypeScript/Python types are enforced.
-2.  **Linter Rules**: No `console.log`, `print`, or `TODO` allowed in production.
-3.  **Arise Script**: A unified entry point for the agent to start working.
+1.  **Strict Mode**: TypeScript/Python types are mandatory.
+2.  **Linting**: Strict rules against `console.log` and `TODO` comments in production code.
+3.  **Unified Entry**: The `arise` script provides a consistent interface for all projects.

@@ -4,18 +4,18 @@ Welcome to the **Shadow Gravity** protocol. This tool allows your AI Agent to sc
 
 ## 1. Installation
 
-You don't typically "install" Shadow Gravity. You summon it using `npx`.
+Run the tool directly using `npx`:
 
 ```bash
 npx shadow-gravity
 ```
 
-## 2. The Extraction (Scaffolding)
+## 2. Project Initialization
 
-When you run the command, the Shadow Monarch will ask you:
+The interactive CLI will prompt you for:
 
-1.  **Project Name**: What do you want to call this extraction?
-2.  **Domain**: Mobile, Web, or Custom?
+1.  **Project Name**: The name of your new application.
+2.  **Domain**: Mobile, Web, or Custom.
 3.  **Stack**:
     *   **Mobile**: Flutter or Expo (React Native).
     *   **Web**: Next.js (Monorepo) or React (Vite).
@@ -23,35 +23,36 @@ When you run the command, the Shadow Monarch will ask you:
 
 ### Example: Full Stack Monorepo
 
-If you select **Mobile** (Flutter) and ask for a **Backend** (Python), Shadow Gravity will create:
+If you select **Mobile** (Flutter) and ask for a **Backend** (Python), Shadow Gravity will creates a monorepo structure:
 
-*   `mobile/`: A simplified Flutter app ready for your agent.
-*   `backend/`: A FastAPI backend with Pydantic models.
-*   `package.json`: A root controller to manage both.
+*   `mobile/`: A Flutter application.
+*   `backend/`: A FastAPI backend.
+*   `package.json`: A root controller to manage both workspaces.
 
-## 3. The Awakening ("Arise")
+## 3. Agent Initialization
 
-Once scaffolded, you must **Inititate the Protocol**.
+Once scaffolded, initialize the environment:
 
 ```bash
 cd your-project-name
 npm run arise
 ```
 
-This command does two things:
-1.  It loads the `MISSION.md` into the agent's context (if using a supporting agent tool).
-2.  It creates a focused environment where the agent knows its exact tools and constraints.
+This command:
+1.  Loads the `MISSION.md` into the agent's context.
+2.  Prepares the environment for autonomous execution.
 
-## 4. The Arsenal (Slash Commands)
+## 4. Automation Toolkit
 
-Your agent now has access to powerful slash commands (check `package.json` scripts):
+Your agent has access to the following slash commands:
 
-*   `/mobile build` -> Compiles the app.
-*   `/backend db` -> Runs migrations.
-*   `/web deploy` -> Deploys to Vercel/Netlify.
-*   `/agent verify` -> Checks for broken code, `TODO`s, or forbidden patterns.
+*   `/mobile build`: Compiles the mobile app.
+*   `/backend db`: Runs database migrations.
+*   `/ops docker`: Generates Docker configuration.
+*   `/ops deploy`: Creates deployment workflows.
+*   `/agent verify`: Runs static analysis and linting.
 
 ## 5. Next Steps
 
-- Check out [SUPPORTED_STACKS.md](./SUPPORTED_STACKS.md) to see what's under the hood.
-- Read `MISSION.md` in your scaffolded project to see the rules your agent must follow.
+- Check out [SUPPORTED_STACKS.md](./SUPPORTED_STACKS.md) for technical details.
+- Read `MISSION.md` in your project root to understand the architectural rules.

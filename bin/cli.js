@@ -14,7 +14,7 @@ console.log(kleur.magenta().bold(`
   ╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
   ███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝
-      🌑 GRAVITY PROTOCOL v5.0 (MODULAR)
+      🌑 GRAVITY PROTOCOL v2.0
 `));
 
 async function init() {
@@ -34,7 +34,7 @@ async function init() {
 
   // 3. EXECUTION
   if (config.needsBackend) {
-      console.log(kleur.cyan(`\n🏗️  Scaffolding MONOREPO...`));
+      console.log(kleur.cyan(`\n🏗️  Scaffolding Monorepo Structure...`));
       
       // A. Mobile
       const mobileDir = path.join(rootDir, 'mobile');
@@ -68,8 +68,8 @@ async function init() {
       injectShadow(rootDir, config.stack, 'standalone');
   }
 
-  console.log(kleur.green(`\n✅ EXTRACTION COMPLETE.`));
-  console.log(`\nTo arise your agent:\n  cd ${config.projectName}\n  npm run arise`);
+  console.log(kleur.green(`\n✅ Project successfully created.`));
+  console.log(`\nNext steps:\n  cd ${config.projectName}\n  npm run arise`);
 }
 
 init();
