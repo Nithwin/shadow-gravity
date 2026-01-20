@@ -19,8 +19,13 @@ Shadow Gravity is not just a scaffolder. It is an **End-to-End Product Builder**
 ### 1. 🏗️ God-Mode Scaffolding
 - **Mobile First**: Flutter & React Native (Expo).
 - **Web Giants**: Next.js (Monorepo) & React (Vite).
-- **Backend Core**: Industry Standard Express + TypeScript (Strict Mode).
+- **Web Giants**: Next.js (Monorepo) & React (Vite).
+- **Backend Core**: Node.js (Express + TS) & **Python (FastAPI)**.
 - **Monorepo Support**: Automatically wires up Mobile + Backend with `concurrently`.
+
+## 📚 Documentation
+- [Getting Started](./docs/GETTING_STARTED.md)
+- [Supported Stacks](./docs/SUPPORTED_STACKS.md)
 
 ### 2. ⚔️ The Shadow Arsenal (Slash Commands)
 Your Agent comes equipped with a library of automation scripts. Just wake it up and type:
