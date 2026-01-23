@@ -1,7 +1,8 @@
 {
   "name": "shadow-gravity",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "The gravitational anchor for Google Antigravity agents. Prevents AI drift.",
+  "type": "module",
   "bin": {
     "shadow-gravity": "bin/cli.js"
   },
@@ -24,11 +25,21 @@
     "bin",
     "template",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "lib"
   ],
+  "scripts": {
+    "test": "vitest"
+  },
   "dependencies": {
+    "chalk": "^5.3.0",
+    "execa": "^9.6.1",
     "fs-extra": "^11.1.1",
-    "prompts": "^2.4.2",
-    "kleur": "^4.1.5"
+    "kleur": "^4.1.5",
+    "ora": "^9.1.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "vitest": "^0.34.6"
   }
 }
